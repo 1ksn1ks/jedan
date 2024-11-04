@@ -182,15 +182,15 @@
         <input type="url" id="url" />
 
         <label for="text">What is on your mind?:</label>
-        <textarea id="text" required></textarea>
+        <textarea id="text" required=""></textarea>
 
         <div class="coordinate-inputs">
           <label for="longitude">Longitude:</label>
           <label for="latitude">Latitude:</label>
         </div>
         <div class="coordinate-inputs">
-          <input type="number" step="any" id="longitude" required />
-          <input type="number" step="any" id="latitude" required />
+          <input type="number" step="any" id="longitude" required="" />
+          <input type="number" step="any" id="latitude" required="" />
         </div>
 
         <button id="submit-msg" type="submit" class="nes-btn is-success">
@@ -198,7 +198,25 @@
         </button>
       </form>
     </div>
-
+    <!-- Read container for fetching messages -->
+    <div
+      class="container nes-container is-rounded is-dark"
+      id="read-container"
+      style="display: none"
+    >
+      <label for="read-topic-id">Enter Topic ID:</label>
+      <input
+        type="text"
+        id="read-topic-id"
+        placeholder="0.0.7390282"
+        value="0.0.7390282"
+      />
+      <button id="fetch-messages" type="button" class="nes-btn is-info">
+        Fetch Messages
+      </button>
+      <div id="messages-output" style="margin-top: 10px"></div>
+      <!-- Output area for messages -->
+    </div>
     <!-- Form container for "Create" option -->
     <div
       class="container nes-container is-rounded is-dark"
@@ -249,12 +267,20 @@
           writeContainer.style.display =
             writeContainer.style.display === "none" ? "block" : "none";
         });
-
-      // Add event listeners for Read and Create buttons (you can implement functionality as needed)
+      // Add event listener for Read button
       document
         .getElementById("read-btn")
         .addEventListener("click", function () {
-          alert("Read functionality is not yet implemented.");
+          const readContainer = document.getElementById("read-container");
+          readContainer.style.display =
+            readContainer.style.display === "none" ? "block" : "none";
+
+          // Hide other containers
+          const writeContainer = document.querySelector(".container");
+          writeContainer.style.display = "none";
+
+          const createContainer = document.getElementById("create-container");
+          createContainer.style.display = "none";
         });
 
       document
