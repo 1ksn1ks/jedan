@@ -724,6 +724,7 @@
         addMarker(mapRef, dataList); // Call the addMarker function with dataList
 
         addPolygonLayer(mapRef);
+        mapRef.addControl(new mapboxgl.NavigationControl());
       };
     </script>
 
