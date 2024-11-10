@@ -302,6 +302,24 @@
         zoom: 5, // starting zoom
       });
 
+      // Event handler for right-click (contextmenu) on desktop
+      map.on("contextmenu", (e) => {
+        dropPin(e.lngLat);
+      });
+
+      // Event handler for long press on mobile
+      let longPressTimer;
+      map.on("touchstart", (e) => {
+        longPressTimer = setTimeout(() => {
+          dropPin(e.lngLat);
+        }, 500); // Trigger after 500ms
+      });
+
+      // Clear timer if the touch ends before long-press threshold
+      map.on("touchend", () => {
+        clearTimeout(longPressTimer);
+      });
+
       // Polygon data
       const polygons = [
         {
